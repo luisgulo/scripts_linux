@@ -1,0 +1,25 @@
+#!/bin/bash
+# Luis Gulo -Obtener informacion de Version Debian-
+# Lo mismo que "lsb_release -a" con algo más de formato
+deb_k1=$(uname -mros)
+deb_k2=$(uname -v |awk -F 'Debian ' '{print $2}')
+deb_k="$deb_k1 $deb_k2"
+deb_d=$(lsb_release -d|awk -F ':' '{print $2}')
+deb_i=$(lsb_release -i|awk -F ':' '{print $2}')
+deb_r=$(lsb_release -r|awk -F ':' '{print $2}')
+deb_c=$(lsb_release -c|awk -F ':' '{print $2}')
+url=' https://www.debian.org/'
+rojo='\e[1;31m'
+azul='\e[1;34m'
+NC='\e[0m'
+echo -e ""
+echo -e "${rojo}       ####     ${NC}"
+echo -e "${rojo}     #     #    ${NC} Kernel ---> "$deb_k1
+echo -e "${rojo}    #   ##  #   ${NC} Parche ---> "$deb_k2
+echo -e "${rojo}    #   #  #    ${NC} S.O. ----->"$deb_d
+echo -e "${rojo}    #    ##     ${NC} Release -->"$deb_r
+echo -e "${rojo}     #          ${NC} CodeName ->"$deb_c
+echo -e "${rojo}      #         ${NC} Pag.Web -->${azul}"$url${NC}
+echo -e "${rojo}        #       ${NC}" 
+echo -e ""
+
